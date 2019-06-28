@@ -1,0 +1,10 @@
+Django==2.2.3
+django-rest-swagger==2.2.0
+djangorestframework==3.9.4
+djangorestframework-jwt==1.11.0
+django-dotenv==1.4.2
+gunicorn==19.9.0
+argon2-cffi==19.1.0
+psycopg2==2.8.3
+pytz==2019.1
+PyYAML==5.1.1
