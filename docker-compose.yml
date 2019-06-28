@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  memcached:
+    image: memcached
+    ports:
+      - "11211:11211"
+  postgresql:
+    image: postgres:11.4
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgresql:/var/lib/postgresql
+  backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.backend
+    working_dir: '/app/'
+    # well, to keep it running
+    command: tail -f /dev/null
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresql
+      - memcached
+    container_name: todo_back
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.frontend
+    # well, to keep it running
+    command: tail -f /dev/null
+    working_dir: '/app/'
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8280:8280"
+    depends_on:
+      - backend
+    container_name: todo_front
+
+volumes:
+  postgresql:

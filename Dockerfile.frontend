@@ -1,0 +1,15 @@
+FROM node:12.6.0
+
+# Create app directory
+WORKDIR /local_modules
+
+# Install app dependencies
+COPY frontend/package*.json /local_modules/
+
+RUN npm i
+
+WORKDIR /app
+
+# Bundle app source
+COPY frontend/ /app/
+COPY frontend/ /local_modules/
