@@ -29,7 +29,7 @@ export const refreshToken = ({ commit, state }) => {
 // User
 
 export const getUserInfo = ({ commit, state }) => {
-  return User.getUserInfo(state).then(response => {
+  return User.getUserInfo().then(response => {
     commit(types.SET_USER_INFO, { user: response.data })
   })
 }

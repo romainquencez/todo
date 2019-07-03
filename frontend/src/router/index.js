@@ -1,16 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '@/store'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: { requiresAuth: true }
     },
     {
       path: '/connexion',
@@ -26,3 +28,22 @@ export default new Router({
     }
   }
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!store.state.authenticated) {
+      next({
+        name: 'login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

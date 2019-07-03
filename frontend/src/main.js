@@ -3,6 +3,7 @@ import '@/plugins'
 import store from '@/store'
 import router from '@/router'
 import App from './App.vue'
+import '@/axiosConfig'
 
 Vue.config.productionTip = false
 
