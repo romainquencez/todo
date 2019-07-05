@@ -3,6 +3,7 @@ from rest_framework_jwt.views import (
     obtain_jwt_token, refresh_jwt_token, verify_jwt_token)
 
 from tasks.urls import tasks_urlspatterns
+from users.urls import users_urlpatterns
 
 urlpatterns = [
     # DRF api auth
@@ -15,4 +16,5 @@ urlpatterns = [
     path('api-token-refresh/', refresh_jwt_token),
     # apps
     path('tasks/', include(tasks_urlspatterns)),
+    path('users/', include(users_urlpatterns)),
 ]
