@@ -7,7 +7,7 @@
         </h2>
 
         <template v-if="!authenticated">
-          <form @submit.prevent="submit">
+          <form>
             <b-field label="Identifiant">
               <b-input
                 icon="user"
@@ -24,6 +24,7 @@
               />
             </b-field>
             <b-button
+              @click="logIn"
               class="is-fullwidth is-primary"
               :class="{ 'is-loading': isLoading }"
               type="submit"
@@ -58,7 +59,7 @@ export default {
   },
   computed: mapState([ 'authenticated' ]),
   methods: {
-    logIn (username, password) {
+    logIn () {
       this.isLoading = true
       Auth.login({
         username: this.username,
@@ -66,12 +67,15 @@ export default {
       }).then(response => {
         this.$store.dispatch('login', { token: response.token })
         this.$router.push(this.$route.query.redirect || { name: 'home' })
+      }).catch(() => {
+        this.$dialog.alert({
+          title: "Erreur d'authentification",
+          message: 'Les informations saisies ne correspondent à aucun utilisateur.',
+          type: 'is-danger',
+          hasIcon: true,
+          icon: 'times-circle'
+        })
       }).finally(this.isLoading = false)
-    },
-    submit () {
-      this.logIn(
-        this.username,
-        this.password)
     }
   }
 }
