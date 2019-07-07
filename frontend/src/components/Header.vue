@@ -5,10 +5,16 @@
     aria-label="main navigation"
   >
     <div class="navbar-brand">
+      <div class="navbar-item">
+        <font-awesome-icon
+          icon="check"
+          class="has-text-success">
+        </font-awesome-icon>
+      </div>
+
       <router-link
         :to="{ name: 'home' }"
-        class="navbar-item is-uppercase"
-        href="#"
+        class="navbar-item is-uppercase has-text-weight-bold"
       >
         Todo
       </router-link>
@@ -17,8 +23,18 @@
     <div class="navbar-end">
       <template v-if="authenticated">
         <div class="navbar-item">
-          connecté !
+          {{ me.username }}
         </div>
+
+        <a
+          @click="logOut()"
+          class="navbar-item"
+        >
+          <font-awesome-icon
+            icon="sign-out-alt"
+            class="">
+          </font-awesome-icon>
+        </a>
       </template>
 
       <template v-else>
@@ -35,6 +51,14 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Header',
-  computed: mapState([ 'authenticated', 'me' ])
+  computed: mapState([ 'authenticated', 'me' ]),
+  beforeMount () {
+    this.$store.dispatch('getUserInfo')
+  },
+  methods: {
+    logOut () {
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>

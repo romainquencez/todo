@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import {
-  faUser, faKey, faTimesCircle
+  faUser, faKey, faTimesCircle, faCheck, faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons'
 import { dom, library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -15,6 +15,6 @@ Vue.use(Buefy, {
 
 dom.watch()
 
-library.add(faUser, faKey, faTimesCircle)
+library.add(faUser, faKey, faTimesCircle, faCheck, faSignOutAlt)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
