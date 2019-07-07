@@ -25,6 +25,7 @@
             </b-field>
             <b-button
               class="is-fullwidth is-primary"
+              :class="{ 'is-loading': isLoading }"
               type="submit"
             >
               Se connecter
@@ -51,19 +52,21 @@ export default {
   data () {
     return {
       username: null,
-      password: null
+      password: null,
+      isLoading: false
     }
   },
   computed: mapState([ 'authenticated' ]),
   methods: {
     logIn (username, password) {
+      this.isLoading = true
       Auth.login({
         username: this.username,
         password: this.password
       }).then(response => {
         this.$store.dispatch('login', { token: response.token })
         this.$router.push(this.$route.query.redirect || { name: 'home' })
-      })
+      }).finally(this.isLoading = false)
     },
     submit () {
       this.logIn(
