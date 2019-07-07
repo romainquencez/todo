@@ -25,6 +25,7 @@
             </b-field>
             <b-button
               @click="logIn"
+              :disabled="!username || !password"
               class="is-fullwidth is-primary"
               :class="{ 'is-loading': isLoading }"
               type="submit"
