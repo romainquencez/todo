@@ -1,51 +1,45 @@
 <template>
-  <section class="hero is-fullheight is-login-page">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <div
-          class="column has-background-black-ter"
-          v-if="!authenticated"
-        >
-          <h3 class="title has-text-white is-size-1">
-            Todo
-        </h3>
-          <p class="subtitle has-text-white has-text-centered">
-            Pour accéder au formulaire de demande, merci de bien vouloir vous connecter.
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="box">
+        <h2 class="title is-2">
+          Connexion
+        </h2>
+
+        <template v-if="!authenticated">
+          <form @submit.prevent="submit">
+            <b-field label="Identifiant">
+              <b-input
+                icon="user"
+                required
+                v-model="username"
+              />
+            </b-field>
+            <b-field label="Mot de passe">
+              <b-input
+                icon="key"
+                required
+                v-model="password"
+                type="password"
+              />
+            </b-field>
+            <b-button
+              class="is-fullwidth is-primary"
+              type="submit"
+            >
+              Se connecter
+            </b-button>
+          </form>
+        </template>
+
+        <template v-else>
+          <p>
+            Vous êtes déjà connecté.
           </p>
-          <div class="form">
-            <form @submit.prevent="submit">
-              <b-field label="Identifiant">
-                <b-input v-model="username">
-                </b-input>
-              </b-field>
-              <b-field label="Mot de passe">
-                <b-input
-                  required
-                  v-model="password"
-                  type="password"
-                >
-                </b-input>
-              </b-field>
-              <button
-                class="button is-block has-background-success has-text-white is-fullwidth is-uppercase"
-                type="submit"
-              >
-                Se connecter
-              </button>
-            </form>
-          </div>
-        </div>
-        <div
-          class="column is-authentified"
-          v-else
-        >
-          <h4>
-            Vous êtes déjà authentifié.
-          </h4>
-        </div>
+        </template>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
