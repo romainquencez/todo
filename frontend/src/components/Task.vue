@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import EditTaskModal from '@/components/EditTaskModal'
+
 export default {
   name: 'Task',
   props: {
@@ -60,6 +62,14 @@ export default {
       this.$store.dispatch('updateTask', this.localTask)
     },
     editTask () {
+      this.$modal.open({
+        parent: this,
+        component: EditTaskModal,
+        props: {
+          task: this.localTask
+        },
+        hasModalCard: true
+      })
     },
     confirmDeleteTask () {
       this.$dialog.confirm({
