@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import mutations from './mutations'
 import * as actions from './actions'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
@@ -14,5 +15,11 @@ export default new Vuex.Store({
     tasks: []
   },
   actions,
-  mutations
+  mutations,
+  plugins: [
+    createPersistedState({
+      key: 'todo',
+      paths: ['token', 'authenticated', 'me']
+    })
+  ]
 })
