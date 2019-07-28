@@ -2,7 +2,7 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">
-        Edition
+        {{ task.id ? 'Edition' : 'Création' }} d'une tâche
       </p>
     </header>
 
@@ -40,8 +40,8 @@
       <input
         class="button is-primary"
         type="button"
-        @click="updateTask()"
-        value="Modifier" />
+        @click="updateOrCreateTask()"
+        :value="task.id ? 'Modifier' : 'Créer'" />
       <input
         class="button is-danger is-outlined"
         type="button"
@@ -66,10 +66,13 @@ export default {
     }
   },
   methods: {
-    updateTask () {
-      this.$store.dispatch('updateTask', this.localTask).then(() => {
+    updateOrCreateTask () {
+      this.$store.dispatch(
+        this.localTask.id ? 'updateTask' : 'createTask',
+        this.localTask
+      ).then(() => {
         this.$toast.open({
-          message: 'Tâche éditée !',
+          message: this.localTask.id ? 'Tâche éditée !' : 'Tache créée !',
           type: 'is-success'
         })
         this.$parent.close()

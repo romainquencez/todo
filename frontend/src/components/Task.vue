@@ -28,13 +28,19 @@
         @click="editTask"
         class="card-footer-item"
       >
+        <span class="icon">
+          <font-awesome-icon icon="edit"></font-awesome-icon>
+        </span>
         Editer
       </a>
 
       <a
         @click="confirmDeleteTask"
-        class="card-footer-item"
+        class="card-footer-item has-text-danger"
       >
+        <span class="icon">
+          <font-awesome-icon icon="trash"></font-awesome-icon>
+        </span>
         Supprimer
       </a>
     </footer>
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-import EditTaskModal from '@/components/EditTaskModal'
+import UpdateOrCreateTaskModal from '@/components/UpdateOrCreateTaskModal'
 
 export default {
   name: 'Task',
@@ -64,7 +70,7 @@ export default {
     editTask () {
       this.$modal.open({
         parent: this,
-        component: EditTaskModal,
+        component: UpdateOrCreateTaskModal,
         props: {
           task: this.localTask
         },
