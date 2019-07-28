@@ -38,6 +38,12 @@ export const createUser = ({ commit, state }, user) => {
   return User.create(user).then(response => response)
 }
 
+export const updateUser = ({ commit, state }, user) => {
+  return User.update(user).then(response => {
+    commit(types.UPDATE_USER, response.data)
+  })
+}
+
 // Task
 
 export const getTasks = ({ commit }) => {

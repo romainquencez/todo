@@ -14,6 +14,9 @@ export default {
   [types.SET_USER_INFO] (state, { user }) {
     state.me = user
   },
+  [types.UPDATE_USER] (state, user) {
+    state.me = user
+  },
   [types.SET_TASKS] (state, { tasks }) {
     state.tasks = tasks
   },

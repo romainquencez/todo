@@ -4,6 +4,7 @@ import store from '@/store'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import EditProfileForm from '@/components/EditProfileForm'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ const router = new Router({
       path: '/inscription',
       name: 'signup',
       component: SignUp
+    },
+    {
+      path: '/profil',
+      name: 'profile',
+      component: EditProfileForm
     }
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -22,9 +22,12 @@
 
     <div class="navbar-end">
       <template v-if="authenticated">
-        <div class="navbar-item">
+        <a
+          @click="toEditProfile"
+          class="navbar-item"
+        >
           {{ me.username }}
-        </div>
+        </a>
 
         <a
           @click="logOut()"
@@ -52,6 +55,9 @@ export default {
   methods: {
     logOut () {
       this.$store.dispatch('logout')
+    },
+    toEditProfile () {
+      this.$router.push({ name: 'profile' })
     }
   }
 }

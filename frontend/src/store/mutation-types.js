@@ -5,6 +5,7 @@ export const SET_TOKEN = 'SET_TOKEN'
 
 // User
 export const SET_USER_INFO = 'SET_USER_INFO'
+export const UPDATE_USER = 'UPDATE_USER'
 
 // Tasks
 export const SET_TASKS = 'SET_TASKS'
