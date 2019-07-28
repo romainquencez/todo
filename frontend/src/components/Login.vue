@@ -7,6 +7,16 @@
         </h2>
 
         <template v-if="!authenticated">
+          <b-button
+            @click="toSignUp"
+            icon-left="user-plus"
+            class="is-fullwidth is-primary"
+          >
+            Inscription
+          </b-button>
+
+          <hr />
+
           <form>
             <b-field label="Identifiant">
               <b-input
@@ -77,6 +87,9 @@ export default {
           icon: 'times-circle'
         })
       }).finally(this.isLoading = false)
+    },
+    toSignUp () {
+      this.$router.push({ name: 'signup' })
     }
   }
 }

@@ -1,11 +1,24 @@
-from rest_framework import generics
+from rest_framework import (generics, mixins, viewsets)
+from rest_framework.permissions import AllowAny
 
 from .models import User
-from .serializers import MeSerializer
+from .serializers import (MeSerializer, UserSerializer)
 
 
 class CurrentUserRetrieveView(generics.RetrieveAPIView):
     serializer_class = MeSerializer
+
+    def get_object(self):
+        return self.request.user
+
+
+class CurrentUserViewSet(
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet):
+    serializer_class = UserSerializer
+    permission_classes = (AllowAny, )
 
     def get_object(self):
         return self.request.user

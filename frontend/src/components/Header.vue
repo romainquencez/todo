@@ -36,12 +36,6 @@
           </font-awesome-icon>
         </a>
       </template>
-
-      <template v-else>
-        <div class="navbar-item">
-          pas connecté
-        </div>
-      </template>
     </div>
   </nav>
 </template>

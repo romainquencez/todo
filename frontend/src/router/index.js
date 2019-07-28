@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '@/store'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
+import SignUp from '@/components/SignUp'
 
 Vue.use(Router)
 
@@ -18,6 +19,11 @@ const router = new Router({
       path: '/connexion',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/inscription',
+      name: 'signup',
+      component: SignUp
     }
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -34,6 +34,10 @@ export const getUserInfo = ({ commit, state }) => {
   })
 }
 
+export const createUser = ({ commit, state }, user) => {
+  return User.create(user).then(response => response)
+}
+
 // Task
 
 export const getTasks = ({ commit }) => {

@@ -1,5 +1,5 @@
 from rest_framework import (mixins, viewsets)
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Task
 from .serializers import TaskSerializer
@@ -11,6 +11,6 @@ class TaskViewSet(
         mixins.UpdateModelMixin,
         mixins.DestroyModelMixin,
         viewsets.GenericViewSet):
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAuthenticated, )
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
