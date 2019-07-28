@@ -1,0 +1,17 @@
+- model: users.user
+  pk: 1
+  fields:
+    password: argon2$argon2i$v=19$m=512,t=2,p=2$RmlqRkVkcUdYNDRT$FlHCTAo2qwd+ztDLebyx1g
+    last_login: null
+    is_superuser: false
+    username: demo
+    first_name: demo
+    last_name: demo
+    email: noreply@demo.com
+    is_staff: false
+    is_active: true
+    date_joined: '2019-07-28 11:41:20+00:00'
+    api_url: ''
+    api_key: ''
+    groups: []
+    user_permissions: []

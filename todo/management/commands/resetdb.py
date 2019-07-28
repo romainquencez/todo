@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = "[DANGER] Reset database and load demo data into database"
 
     FIXTURES = (
-        ''
+        'users'
     )
 
     def add_arguments(self, parser):
