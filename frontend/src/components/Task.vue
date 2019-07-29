@@ -5,7 +5,8 @@
         <p>
           <a
             v-if="localTask.issue"
-            href="#"
+            :href="issueUrl"
+            target="_blank"
           >
             #{{ localTask.issue }}
           </a> {{ localTask.name }}
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import UpdateOrCreateTaskModal from '@/components/UpdateOrCreateTaskModal'
 
 export default {
@@ -59,8 +61,18 @@ export default {
     }
   },
   computed: {
+    ...mapState([ 'me' ]),
     localTask () {
       return { ...this.task }
+    },
+    issueUrl () {
+      if (
+        this.me.api_url &&
+        this.localTask.issue
+      ) {
+        return `${this.me.api_url}issues/${this.localTask.issue}`
+      }
+      return String
     }
   },
   methods: {
