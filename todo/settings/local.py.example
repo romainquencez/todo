@@ -1,0 +1,64 @@
+import os
+
+from .defaults import *  # noqa
+
+
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+DEBUG = True
+
+INSTALLED_APPS += (
+    'debug_toolbar',
+    'debug_panel',
+    'django_extensions'
+)
+
+MIDDLEWARE += (
+    # use this one if you are debugging ajax request
+    # 'debug_panel.middleware.DebugPanelMiddleware',
+    # use this one for normal debug
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+)
+
+# for django-debug-toolbar (allow all remote origin)
+def custom_show_toolbar(self):
+    return True
+
+
+# for django-debug-toolbar
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+}
+
+# for django-debug-toolbar
+INTERNAL_IPS = ('',)
+
+ALLOWED_HOSTS = ['']
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': '',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+SECRET_KEY = ''
+
+LANGUAGE_CODE = ''
+
+TIME_ZONE = ''
+
+STATIC_ROOT = os.path.join(BASE_DIR, '')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '')
+
+MEDIA_URL = ''
+
+EMAIL_BACKEND = ''
