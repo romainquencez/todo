@@ -21,7 +21,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8200:8200"
+      - "8080:8080"
     depends_on:
       - postgresql
       - memcached
@@ -36,7 +36,7 @@ services:
     volumes:
       - ./frontend:/app
     ports:
-      - "8280:8280"
+      - "8000:8000"
     depends_on:
       - backend
     container_name: todo_front
